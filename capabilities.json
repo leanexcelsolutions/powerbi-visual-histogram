@@ -1,0 +1,483 @@
+{
+  "dataRoles": [
+    {
+      "name": "value",
+      "displayName": "Value",
+      "displayNameKey": "Role_Value",
+      "description": "The numeric column to plot, e.g. cycle time, weight, delivery days.",
+      "descriptionKey": "Role_Value_Description",
+      "kind": "Grouping",
+      "requiredTypes": [
+        {
+          "numeric": true
+        },
+        {
+          "integer": true
+        }
+      ]
+    },
+    {
+      "name": "frequency",
+      "displayName": "Frequency (Count of Value)",
+      "displayNameKey": "Role_Frequency",
+      "description": "Add the same column here as Count for exact counts, or a measure if your data is already counted.",
+      "descriptionKey": "Role_Frequency_Description",
+      "kind": "Measure",
+      "requiredTypes": [
+        {
+          "numeric": true
+        },
+        {
+          "integer": true
+        }
+      ]
+    },
+    {
+      "name": "lsl",
+      "displayName": "Lower spec limit",
+      "displayNameKey": "Role_LSL",
+      "kind": "Measure",
+      "requiredTypes": [
+        {
+          "numeric": true
+        },
+        {
+          "integer": true
+        }
+      ]
+    },
+    {
+      "name": "usl",
+      "displayName": "Upper spec limit",
+      "displayNameKey": "Role_USL",
+      "kind": "Measure",
+      "requiredTypes": [
+        {
+          "numeric": true
+        },
+        {
+          "integer": true
+        }
+      ]
+    },
+    {
+      "name": "target",
+      "displayName": "Target",
+      "displayNameKey": "Role_Target",
+      "kind": "Measure",
+      "requiredTypes": [
+        {
+          "numeric": true
+        },
+        {
+          "integer": true
+        }
+      ]
+    },
+    {
+      "name": "split",
+      "displayName": "Split by (Histogram Pro)",
+      "displayNameKey": "Role_Split",
+      "description": "One histogram per group, e.g. per line or shift, with the same bins. Needs a Histogram Pro licence; without one, all data is shown combined.",
+      "descriptionKey": "Role_Split_Description",
+      "kind": "Grouping"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "max": 1
+          },
+          "frequency": {
+            "max": 1
+          },
+          "lsl": {
+            "max": 1
+          },
+          "usl": {
+            "max": 1
+          },
+          "target": {
+            "max": 1
+          },
+          "split": {
+            "max": 1
+          }
+        }
+      ],
+      "categorical": {
+        "categories": {
+          "select": [
+            {
+              "for": {
+                "in": "value"
+              }
+            },
+            {
+              "bind": {
+                "to": "split"
+              }
+            }
+          ],
+          "dataReductionAlgorithm": {
+            "top": {
+              "count": 30000
+            }
+          }
+        },
+        "values": {
+          "select": [
+            {
+              "bind": {
+                "to": "frequency"
+              }
+            },
+            {
+              "bind": {
+                "to": "lsl"
+              }
+            },
+            {
+              "bind": {
+                "to": "usl"
+              }
+            },
+            {
+              "bind": {
+                "to": "target"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "objects": {
+    "bins": {
+      "properties": {
+        "rule": {
+          "type": {
+            "enumeration": []
+          }
+        },
+        "binCount": {
+          "type": {
+            "numeric": true
+          }
+        },
+        "binWidth": {
+          "type": {
+            "numeric": true
+          }
+        },
+        "start": {
+          "type": {
+            "text": true
+          }
+        },
+        "underflow": {
+          "type": {
+            "text": true
+          }
+        },
+        "overflow": {
+          "type": {
+            "text": true
+          }
+        },
+        "roundEdges": {
+          "type": {
+            "bool": true
+          }
+        }
+      }
+    },
+    "bars": {
+      "properties": {
+        "fill": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "gap": {
+          "type": {
+            "numeric": true
+          }
+        },
+        "showLabels": {
+          "type": {
+            "bool": true
+          }
+        },
+        "labelColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "fontSize": {
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        }
+      }
+    },
+    "yAxis": {
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "measure": {
+          "type": {
+            "enumeration": []
+          }
+        },
+        "showTitle": {
+          "type": {
+            "bool": true
+          }
+        },
+        "gridlines": {
+          "type": {
+            "bool": true
+          }
+        },
+        "fontColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "fontSize": {
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        }
+      }
+    },
+    "xAxis": {
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "showTitle": {
+          "type": {
+            "bool": true
+          }
+        },
+        "decimals": {
+          "type": {
+            "numeric": true
+          }
+        },
+        "fontColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "fontSize": {
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        }
+      }
+    },
+    "overlays": {
+      "properties": {
+        "normalCurve": {
+          "type": {
+            "bool": true
+          }
+        },
+        "curveColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "meanLine": {
+          "type": {
+            "bool": true
+          }
+        },
+        "medianLine": {
+          "type": {
+            "bool": true
+          }
+        },
+        "statColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "cumulative": {
+          "type": {
+            "bool": true
+          }
+        },
+        "cumulativeColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "specLimits": {
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "lsl": {
+          "type": {
+            "text": true
+          }
+        },
+        "usl": {
+          "type": {
+            "text": true
+          }
+        },
+        "target": {
+          "type": {
+            "text": true
+          }
+        },
+        "lineColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "targetColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "outOfSpecFill": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "showCapability": {
+          "type": {
+            "bool": true
+          }
+        }
+      }
+    },
+    "summary": {
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "fontColor": {
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "fontSize": {
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        }
+      }
+    },
+    "smallMultiples": {
+      "properties": {
+        "sameYAxis": {
+          "type": {
+            "bool": true
+          }
+        },
+        "columns": {
+          "type": {
+            "numeric": true
+          }
+        },
+        "titleSize": {
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        },
+        "maxPanels": {
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    }
+  },
+  "supportsHighlight": true,
+  "supportsKeyboardFocus": true,
+  "supportsLandingPage": true,
+  "supportsEmptyDataView": true,
+  "supportsMultiVisualSelection": true,
+  "suppressDefaultTitle": false,
+  "tooltips": {
+    "supportedTypes": {
+      "default": true,
+      "canvas": true
+    }
+  },
+  "privileges": []
+}

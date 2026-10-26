@@ -1,0 +1,26 @@
+{
+  "visual": {
+    "name": "leanExcelHistogram",
+    "displayName": "Histogram by Lean Excel",
+    "guid": "leanExcelHistogram52CDAD673BB441B9B83A103005EFE847",
+    "visualClassName": "Visual",
+    "version": "1.1.2.0",
+    "description": "Histogram with bins that match Microsoft Excel, normal curve, spec limits, Pp and Ppk, and cross-filtering.",
+    "supportUrl": "https://www.leanexcel.com/support/histogram-by-lean-excel",
+    "gitHubUrl": "https://github.com/leanexcelsolutions/powerbi-visual-histogram"
+  },
+  "apiVersion": "5.11.1",
+  "author": {
+    "name": "Lean Excel",
+    "email": "hello@leanexcel.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": [],
+  "version": "1.1.2.0"
+}

@@ -1,0 +1,121 @@
+// Histogram by Lean Excel. Neutral, Power BI-native look; colours come from the theme / format pane.
+@font: 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif;
+
+.lx-hist {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: @font;
+    user-select: none;
+}
+
+.lx-summary {
+    flex: 0 0 auto;         // Never shrink: prevents stats from being squished when visual height changes
+    display: flex;
+    flex-wrap: wrap;        // Wraps naturally into multiple lines when width narrows
+    overflow: hidden;
+    gap: 4px 6px;
+    padding: 3px 6px 5px;
+    line-height: 1.3;
+}
+
+.lx-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #F5F8F9;      // color.neutral.page
+    border: 1px solid #DFE7EA; // color.neutral.line
+    white-space: nowrap;
+    box-sizing: border-box;
+
+    &.lx-stat-met {
+        background: #F0FDF4;   // soft green tint
+        border-color: #BBF7D0;
+        .lx-stat-value { color: #15803D; } // color.status.met
+    }
+
+    &.lx-stat-at-risk {
+        background: #FFFBEB;   // soft amber tint
+        border-color: #FDE68A;
+        .lx-stat-value { color: #B45309; } // color.status.atRisk
+    }
+
+    &.lx-stat-not-met {
+        background: #FEF2F2;   // soft red tint
+        border-color: #FECACA;
+        .lx-stat-value { color: #DC2626; } // color.status.notMet
+    }
+}
+
+.lx-stat-label {
+    opacity: 0.8;
+    margin-right: 2px;
+}
+
+.lx-stat-value {
+    font-weight: 600;
+}
+
+.lx-note {
+    padding: 0 6px 4px;
+    font-size: 10px;
+    line-height: 1.3;
+    color: #8A8886;
+}
+
+.lx-chart {
+    display: block;
+    overflow: visible;
+    .lx-bar { cursor: pointer; transition: opacity 120ms ease; }
+    .lx-bar:focus { outline: none; }
+    .lx-bar:focus-visible { stroke: #10222B; stroke-width: 2px; /* brand ink: color.neutral.ink */ }
+    text { font-family: @font; }
+}
+
+.lx-landing {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+.lx-landing-card {
+    max-width: 380px;
+    color: #252423;
+    .lx-landing-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .lx-landing-sub { font-size: 12px; color: #605E5C; margin-bottom: 8px; }
+    .lx-landing-steps { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.6; color: #323130; }
+}
+
+@media (forced-colors: active) {
+    .lx-chart .lx-bar:focus-visible { stroke: Highlight; }
+    .lx-stat {
+        background: transparent !important;
+        border-color: ButtonBorder !important;
+        .lx-stat-value { color: CanvasText !important; }
+    }
+}
+
+// Histogram Pro: small multiples
+.lx-grid-panels {
+    flex: 0 0 auto;
+    align-content: start;
+}
+.lx-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+}
+.lx-panel > * { flex: 0 0 auto; }
+.lx-panel-title {
+    padding: 2px 6px 0;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
